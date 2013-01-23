@@ -7,11 +7,11 @@
 //
 
 #import "MAContactViewController.h"
-#import "MAAppAPIClient.h"
 #import "MAPeople.h"
-#import "MADetailsContactVC.h"
 #import "MAContactViewCell.h"
-
+#import "MADetailContactViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "AFNetworking.h"
 @interface MAContactViewController ()
 
 
@@ -46,7 +46,7 @@
 
     self.countClick = [NSUserDefaults standardUserDefaults];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://api.mongolab.com/api/1/databases/2359media/collections/user?apiKey=50bc7070e4b07d292a90b92b"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/11295402/MiniEval/data.json"]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSMutableArray *results = [NSMutableArray array];
         for (id staffDictionary in JSON) {
@@ -102,8 +102,18 @@
         }
         
         cell.nameContact.text = [NSString stringWithFormat:@"%@", p.name];
+        if ([p.gender isEqual:@"male"]) {
+            [cell.nameContact setTextColor:[UIColor orangeColor]];
+        }
+        else
+        {
+            [cell.nameContact setTextColor:[UIColor blueColor]];
+        }
         cell.emailContact.text = [NSString stringWithFormat:@"%@", p.userName];
-        cell.avatarContact.image = [UIImage imageNamed:@"people.png"];
+        [cell.avatarContact setImageWithURL:[NSURL URLWithString:p.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
+        cell.avatarContact.layer.cornerRadius = 20.0;
+        cell.avatarContact.clipsToBounds = YES;
+
     }
     
     return cell;
@@ -123,13 +133,9 @@
     MAPeople *persons = [self.result objectAtIndex: indexpath.row];
     if([sender isKindOfClass:[UITableViewCell class]])
     {
-//        UITableViewCell *currentCell = sender;
-//        if ([currentCell.superview isEqual: self.searchDisplayController.searchResultsTableView])
-//        {
-//            MAPeople *persons = [self.filteredNameArray objectAtIndex: indexpath.row];
-//        }
-        MADetailsFeedVC *destinationVC = (MADetailsFeedVC *)segue.destinationViewController;
+        MADetailContactViewController *destinationVC = (MADetailContactViewController *)segue.destinationViewController;
         destinationVC.people = persons;
+        
         int hits = [self.countClick integerForKey:persons.name] + 1;
         if (hits > self.highestClick) {
             self.highestClick = hits;

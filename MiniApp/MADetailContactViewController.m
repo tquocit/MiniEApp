@@ -37,43 +37,40 @@
     [super viewDidLoad];
     self.title = self.people.name;
     MADetailContactCell *avatarcell = [self.tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
-    MADetailContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
+    MADetailContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
 
-    NSMutableArray *mutable = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray *mutable = [NSMutableArray array];
     
-    UIFont *fontava = avatarcell.role.font;
-    CGFloat widthava = avatarcell.role.frame.size.width;
-    
-    UIFont *font = cell.myContentDetail.font;
-    CGFloat width = cell.myContentDetail.frame.size.width;
+    UIFont *font = cell.emailDetail.font;
+    CGFloat width = cell.emailDetail.frame.size.width;
     
     
        
     
     //calculate size for image and role
-    CGSize sizelable = [self.people.role sizeWithFont:fontava constrainedToSize: CGSizeMake(widthava, 1000) lineBreakMode: NSLineBreakByWordWrapping];
+    CGSize sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
     if (sizelable.height < avatarcell.frame.size.height) {
         sizelable.height = avatarcell.frame.size.height;
     }
     mutable = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:sizelable.height]];
 
     //calculate size for email
-    sizelable = [self.people.userName sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode: NSLineBreakByWordWrapping];
+    sizelable = [self.people.userName sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
     [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
     
     //calculate size for contact number
-    sizelable = [self.people.contact sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode: NSLineBreakByWordWrapping];
+    sizelable = [self.people.contact sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) ];
     [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
     
     //calculate size for like
-    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode: NSLineBreakByWordWrapping];
+    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
     if (sizelable.height < cell.frame.size.height) {
         sizelable.height = cell.frame.size.height;
     }
     [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
     
     //calculate size for dislike
-    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode: NSLineBreakByWordWrapping];
+    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
     if (sizelable.height < cell.frame.size.height) {
         sizelable.height = cell.frame.size.height;
     }
@@ -90,14 +87,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-
-    // Return the number of sections.
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -118,40 +108,47 @@
     switch (indexPath.row) {
         case 0:{
             cell = [tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
-            [cell.avatar setImageWithURL:[NSURL URLWithString:self.people.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
-            cell.role.text = [self.people valueForKey:@"role"];
+            [cell.avatarImage setImageWithURL:[NSURL URLWithString:self.people.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
+            cell.roleDetail.text = [self.people valueForKey:@"role"];
             
             break;}
         case 1:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
-            cell.imageDetail.image = [UIImage imageNamed:@"icon_email.png"];
-            cell.myContentDetail.text = [self.people valueForKey:@"userName"];
-//            [cell.contentDetail sizeToFit];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
+//            cell..image = [UIImage imageNamed:@"icon_email.png"];
+            cell.emailDetail.text = [self.people valueForKey:@"userName"];
+            
             break;}
+            
         case 2:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
-            cell.imageDetail.image = [UIImage imageNamed:@"icon_sms.png"];
-            cell.myContentDetail.text = [self.people valueForKey:@"contact"];
-//            [cell.contentDetail sizeToFit];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SMSCell"];
+            if (!self.people.contact) {
+                cell.hidden = YES;
+            }
+            else{
+//                cell.imageDetail.image = [UIImage imageNamed:@"icon_sms.png"];
+                cell.smsDetail.text = [self.people valueForKey:@"contact"];
+            }
+//           [cell.myContentDetail sizeToFit];
             break;}
         case 3:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
-            cell.imageDetail.image = [UIImage imageNamed:@"icon_like.png"];
-            cell.myContentDetail.text = [self.people valueForKey:@"like"];
-//            [cell.contentDetail sizeToFit];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
+//            cell.imageDetail.image = [UIImage imageNamed:@"icon_like.png"];
+            cell.likeDetail.text = [self.people valueForKey:@"like"];
+            [cell.likeDetail sizeToFit];
             break;}
         case 4: {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
-            cell.imageDetail.image = [UIImage imageNamed:@"icon_dislike.png"];
-            cell.myContentDetail.text = [self.people valueForKey:@"dislike"];
-//          2  [cell.contentDetail sizeToFit];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"DislikeCell"];
+//            cell.imageDetail.image = [UIImage imageNamed:@"icon_dislike.png"];
+            cell.dislikeDetail.text = [self.people valueForKey:@"dislike"];
+            [cell.dislikeDetail sizeToFit];
+            
             break;
         }
         default:
             break;
     }
-    [cell.role sizeToFit];
-    [cell.myContentDetail sizeToFit];
+    [cell.roleDetail sizeToFit];
+//    [cell.myContentDetail sizeToFit];
    
     return cell;
 }

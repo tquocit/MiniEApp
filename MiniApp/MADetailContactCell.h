@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface MADetailContactCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imageDetail;
-@property (weak, nonatomic) IBOutlet UILabel *myContentDetail;
-@property (weak, nonatomic) IBOutlet UIImageView *avatar;
-@property (weak, nonatomic) IBOutlet UILabel *role;
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
+@property (weak, nonatomic) IBOutlet UILabel *roleDetail;
+
+@property (weak, nonatomic) IBOutlet UILabel *emailDetail;
+
+@property (weak, nonatomic) IBOutlet UILabel *smsDetail;
+
+@property (weak, nonatomic) IBOutlet UILabel *likeDetail;
+
+@property (weak, nonatomic) IBOutlet UILabel *dislikeDetail;
 
 @end

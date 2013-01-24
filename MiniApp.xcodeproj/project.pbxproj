@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8403FDFA16AFC1640022809B /* MADetailContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8403FDF916AFC1640022809B /* MADetailContactViewController.m */; };
+		8436B7BC16B12B5400799893 /* MACustomTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436B7BB16B12B5400799893 /* MACustomTabbarViewController.m */; };
+		8436B7C016B147CD00799893 /* icon_contacts_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8436B7BE16B147CD00799893 /* icon_contacts_selected.png */; };
+		8436B7C116B147CD00799893 /* icon_contacts_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8436B7BF16B147CD00799893 /* icon_contacts_selected@2x.png */; };
+		8436B7C416B1487D00799893 /* icon_info_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8436B7C216B1487C00799893 /* icon_info_selected.png */; };
+		8436B7C516B1487D00799893 /* icon_info_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8436B7C316B1487C00799893 /* icon_info_selected@2x.png */; };
 		8446F5E916AE702800FABEC9 /* MAContactViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446F5E816AE702800FABEC9 /* MAContactViewCell.m */; };
 		8446F5ED16AE8EF200FABEC9 /* icon_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446F5EC16AE8EF200FABEC9 /* icon_star.png */; };
 		8452540216AF931C003E0E35 /* icon_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8452540016AF931C003E0E35 /* icon_profile.png */; };
@@ -69,6 +74,12 @@
 /* Begin PBXFileReference section */
 		8403FDF816AFC1640022809B /* MADetailContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADetailContactViewController.h; sourceTree = "<group>"; };
 		8403FDF916AFC1640022809B /* MADetailContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADetailContactViewController.m; sourceTree = "<group>"; };
+		8436B7BA16B12B5400799893 /* MACustomTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACustomTabbarViewController.h; sourceTree = "<group>"; };
+		8436B7BB16B12B5400799893 /* MACustomTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACustomTabbarViewController.m; sourceTree = "<group>"; };
+		8436B7BE16B147CD00799893 /* icon_contacts_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_contacts_selected.png; sourceTree = "<group>"; };
+		8436B7BF16B147CD00799893 /* icon_contacts_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_contacts_selected@2x.png"; sourceTree = "<group>"; };
+		8436B7C216B1487C00799893 /* icon_info_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_info_selected.png; sourceTree = "<group>"; };
+		8436B7C316B1487C00799893 /* icon_info_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_info_selected@2x.png"; sourceTree = "<group>"; };
 		8446F5E716AE702800FABEC9 /* MAContactViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAContactViewCell.h; sourceTree = "<group>"; };
 		8446F5E816AE702800FABEC9 /* MAContactViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAContactViewCell.m; sourceTree = "<group>"; };
 		8446F5EC16AE8EF200FABEC9 /* icon_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star.png; sourceTree = "<group>"; };
@@ -229,6 +240,8 @@
 				84B6075716AD303E008B6F94 /* MAWebVC.m */,
 				8403FDF816AFC1640022809B /* MADetailContactViewController.h */,
 				8403FDF916AFC1640022809B /* MADetailContactViewController.m */,
+				8436B7BA16B12B5400799893 /* MACustomTabbarViewController.h */,
+				8436B7BB16B12B5400799893 /* MACustomTabbarViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -291,6 +304,10 @@
 		84B607AC16AD3D6C008B6F94 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8436B7C216B1487C00799893 /* icon_info_selected.png */,
+				8436B7C316B1487C00799893 /* icon_info_selected@2x.png */,
+				8436B7BE16B147CD00799893 /* icon_contacts_selected.png */,
+				8436B7BF16B147CD00799893 /* icon_contacts_selected@2x.png */,
 				84EFB24316AFDA1F00653C0F /* icon_add_contact.png */,
 				84EFB24416AFDA1F00653C0F /* icon_add_contact@2x.png */,
 				84EFB24516AFDA1F00653C0F /* icon_dislike.png */,
@@ -429,6 +446,10 @@
 				84EFB25416AFDA1F00653C0F /* icon_like@2x.png in Resources */,
 				84EFB25516AFDA1F00653C0F /* icon_sms.png in Resources */,
 				84EFB25616AFDA1F00653C0F /* icon_sms@2x.png in Resources */,
+				8436B7C016B147CD00799893 /* icon_contacts_selected.png in Resources */,
+				8436B7C116B147CD00799893 /* icon_contacts_selected@2x.png in Resources */,
+				8436B7C416B1487D00799893 /* icon_info_selected.png in Resources */,
+				8436B7C516B1487D00799893 /* icon_info_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +478,7 @@
 				8446F5E916AE702800FABEC9 /* MAContactViewCell.m in Sources */,
 				8403FDFA16AFC1640022809B /* MADetailContactViewController.m in Sources */,
 				84EFB24216AFD46800653C0F /* MADetailContactCell.m in Sources */,
+				8436B7BC16B12B5400799893 /* MACustomTabbarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

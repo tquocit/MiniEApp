@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--WebVC - 2359 Media-->
+        <!--WebVC-->
         <scene sceneID="rRD-fm-PpT">
             <objects>
                 <viewController id="xlW-DN-Vfj" customClass="MAWebVC" sceneMemberID="viewController">
@@ -20,9 +20,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="2359 Media" image="icon_info.png" id="pZb-aM-NdG">
-                        <inset key="imageInsets" minX="0.0" minY="-9" maxX="0.0" maxY="6"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" id="pZb-aM-NdG"/>
                     <connections>
                         <outlet property="viewWebsite" destination="7Vr-ha-glN" id="oto-Vg-dVd"/>
                     </connections>
@@ -238,12 +236,12 @@
             </objects>
             <point key="canvasLocation" x="-1014" y="-1480"/>
         </scene>
-        <!--Navigation Controller - Contact-->
+        <!--Navigation Controller-->
         <scene sceneID="zhF-F6-phn">
             <objects>
                 <navigationController id="dVV-O0-TQx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contact" image="icon_contacts.png" id="N04-7I-2IH">
-                        <inset key="imageInsets" minX="0.0" minY="-5" maxX="0.0" maxY="5"/>
+                    <tabBarItem key="tabBarItem" title="" id="N04-7I-2IH">
+                        <inset key="imageInsets" minX="0.0" minY="3" maxX="0.0" maxY="-3"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZY3-WU-AL3">
@@ -259,10 +257,10 @@
             </objects>
             <point key="canvasLocation" x="-1968" y="-1470"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tabbar View Controller-->
         <scene sceneID="K7t-kz-DRJ">
             <objects>
-                <tabBarController id="av0-tp-Z8r" sceneMemberID="viewController">
+                <tabBarController id="av0-tp-Z8r" customClass="MACustomTabbarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="QPw-Pm-xfF">
@@ -270,8 +268,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="dVV-O0-TQx" kind="relationship" relationship="viewControllers" id="4PX-VL-Znb"/>
                         <segue destination="xlW-DN-Vfj" kind="relationship" relationship="viewControllers" id="sVS-mj-H3w"/>
+                        <segue destination="dVV-O0-TQx" kind="relationship" relationship="viewControllers" id="4PX-VL-Znb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fU-US-H50" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,10 +278,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_contacts.png" width="49" height="49"/>
         <image name="icon_dislike.png" width="22" height="24"/>
         <image name="icon_email.png" width="22" height="22"/>
-        <image name="icon_info.png" width="49" height="49"/>
         <image name="icon_like.png" width="22" height="24"/>
         <image name="icon_sms.png" width="22" height="22"/>
     </resources>
@@ -299,6 +295,9 @@
         </class>
         <class className="MAContactViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MAContactViewController.h"/>
+        </class>
+        <class className="MACustomTabbarViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MACustomTabbarViewController.h"/>
         </class>
         <class className="MADetailContactCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MADetailContactCell.h"/>

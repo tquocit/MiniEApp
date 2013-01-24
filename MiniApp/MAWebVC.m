@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [self.viewWebsite loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://2359media.com/"]]];
 
-    TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:[NSURL URLWithString:@"http://2359media.com"]];
+//    TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:[NSURL URLWithString:@"http://2359media.com"]];
 //    webBrowser.showURLStringOnActionSheetTitle = YES;
 //    webBrowser.showPageTitleOnTitleBar = YES;
 //    webBrowser.showActionButton = YES;
@@ -40,7 +40,7 @@
     
 //    if (webBrowser.mode == TSMiniWebBrowserModeModal) {
 //        webBrowser.modalDismissButtonTitle = @"Home";
-        [self presentModalViewController:webBrowser animated:YES];
+//        [self presentModalViewController:webBrowser animated:YES];
 //    } else if(webBrowser.mode == TSMiniWebBrowserModeNavigation) {
 //        [self.navigationController pushViewController:webBrowser animated:YES];
 //    }

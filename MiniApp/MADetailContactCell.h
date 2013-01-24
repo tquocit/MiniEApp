@@ -10,7 +10,7 @@
 
 @interface MADetailContactCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageDetail;
-@property (weak, nonatomic) IBOutlet UILabel *contentDetail;
+@property (weak, nonatomic) IBOutlet UILabel *myContentDetail;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *role;
 

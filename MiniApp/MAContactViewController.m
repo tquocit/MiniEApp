@@ -43,24 +43,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.countClick = [NSUserDefaults standardUserDefaults];
+//    [self loaddata];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/11295402/MiniEval/data.json"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSMutableArray *results = [NSMutableArray array];
-        for (id staffDictionary in JSON) {
-            MAPeople *people = [[MAPeople alloc] initWithDictionary:staffDictionary];
-            [results addObject:people];
-        }
-        self.result = results;
-        self.highestAt = [self getHighestClick];
-        [self.tableView reloadData];
+    self.countClick = [NSUserDefaults standardUserDefaults];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    
+}
 
-    } failure:nil];
-    [operation start];
-    }
+-(void)refreshView:(UIRefreshControl *)refresh {
+    
+    dispatch_queue_t loadingData = dispatch_queue_create("load data", NULL);
+    dispatch_async(loadingData, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+            // custom refresh logic would be placed here...
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, h:mm a"];
+            NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",[formatter stringFromDate:[NSDate date]]];
+            refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+            
+            [self setTitle:@"2359 MEDIA"];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/11295402/MiniEval/data.json"]];
+            AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSMutableArray *results = [NSMutableArray array];
+                for (id staffDictionary in JSON) {
+                    MAPeople *people = [[MAPeople alloc] initWithDictionary:staffDictionary];
+                    [results addObject:people];
+                }
+                self.result = results;
+                self.highestAt = [self getHighestClick];
+                
+                [self.tableView reloadData];
+                
+                [refresh endRefreshing];
+                
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+                
+            }];
+            [operation start];
 
+            
+            
+        });
+    });
+}
 
 - (void)didReceiveMemoryWarning
 {

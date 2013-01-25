@@ -13,34 +13,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self customizeInterface];
-     
-    
-    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-        
-    UITabBarItem *tabInfo = tabController.tabBar.items[0];
-    UITabBarItem *tabContact = tabController.tabBar.items[1];
-//
-    [tabInfo setFinishedSelectedImage:[UIImage imageNamed:@"icon_info_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"icon_info.png"]];
-    [tabContact setFinishedSelectedImage:[UIImage imageNamed:@"icon_contacts_selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"icon_contacts.png"]];
-
-//    NSArray *tabs =  tabController.viewControllers;
-//    UIViewController *tab1 = [tabs objectAtIndex:0];
-//    tab1.tabBarItem.image = [UIImage imageNamed:@"icon_info.png"];
-//    UIViewController *tab2 = [tabs objectAtIndex:1];
-//    tab2.tabBarItem.image = [UIImage imageNamed:@"icon_contacts.png"];
-//  
-//    
-//       tabBarInfo.titlePositionAdjustment = UIOffsetMake(0, -5);
-    return YES;
+//    [[UINavigationBar appearance] setColor:[UIColor blackColor]];
+        return YES;
    
 }
 
 - (void)customizeInterface
 {
-    UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
-//
-////    [[UINavigationBar appearance] setBackgroundImage:tabBarBackground];
-    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+//    UIImage* tabBarBackground = [UIImage imageNamed:@"tabbar.png"];
+
+    
+//    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
 ////    [[UINavigationBar appearance] setBackground:tabBarBackground];
 //    
 //    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"selection-tab.png"]];

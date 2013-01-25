@@ -9,9 +9,10 @@
 #import "MADetailContactViewController.h"
 #import "MADetailContactCell.h"
 #import "UIImageView+AFNetworking.h"
-#define PADDING 20;
-@interface MADetailContactViewController ()
-
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#define PADDING 35;
+@interface MADetailContactViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @end
 
 @implementation MADetailContactViewController
@@ -98,7 +99,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self.heightArray objectAtIndex:indexPath.row] doubleValue] + PADDING;
+    return [[self.heightArray objectAtIndex:indexPath.row] doubleValue]+PADDING;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,33 +115,28 @@
             break;}
         case 1:{
             cell = [tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
-//            cell..image = [UIImage imageNamed:@"icon_email.png"];
             cell.emailDetail.text = [self.people valueForKey:@"userName"];
             
             break;}
             
         case 2:{
             cell = [tableView dequeueReusableCellWithIdentifier:@"SMSCell"];
-            if (!self.people.contact) {
-                cell.hidden = YES;
-                
-                [cell setFrame:CGRectZero];
-            }
-            else{
-//                cell.imageDetail.image = [UIImage imageNamed:@"icon_sms.png"];
-                cell.smsDetail.text = [self.people valueForKey:@"contact"];
-            }
-//           [cell.myContentDetail sizeToFit];
+//            if (!self.people.contact) {
+//                
+//            }
+//            else{
+//                cell.smsDetail.text = [self.people valueForKey:@"contact"];
+//            }
+            cell.smsDetail.text = [self.people valueForKey:@"contact"];
+
             break;}
         case 3:{
             cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
-//            cell.imageDetail.image = [UIImage imageNamed:@"icon_like.png"];
             cell.likeDetail.text = [self.people valueForKey:@"like"];
             [cell.likeDetail sizeToFit];
             break;}
         case 4: {
             cell = [tableView dequeueReusableCellWithIdentifier:@"DislikeCell"];
-//            cell.imageDetail.image = [UIImage imageNamed:@"icon_dislike.png"];
             cell.dislikeDetail.text = [self.people valueForKey:@"dislike"];
             [cell.dislikeDetail sizeToFit];
             
@@ -150,7 +146,6 @@
             break;
     }
     [cell.roleDetail sizeToFit];
-//    [cell.myContentDetail sizeToFit];
    
     return cell;
 }
@@ -159,7 +154,97 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-//    cell.indexPath[1]
+    if (indexPath.row == 1) {
+        [self mail_check];
+    }
+    if (indexPath.row == 2) {
+        [self sms_check];
+    }
+}
+
+- (void)mail_check
+{
+    Class emailClass=(NSClassFromString(@"MFMailComposeViewController"));
+    if (emailClass!=nil)
+    {
+        if ([emailClass canSendMail])
+            [self displayComposerSheet];
+        else
+        {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Email cannot be send!"
+                                                         message:@"Device is not configured to send email"
+                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Email cannot be send!"
+                                                     message:@"Device cannot send email"
+                                                    delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+
+- (void)displayComposerSheet
+{
+    MFMailComposeViewController *composePage=[[MFMailComposeViewController alloc]init];
+    composePage.mailComposeDelegate=self;
+    
+    NSArray *recipients=[NSArray arrayWithObject:self.people.userName];
+    
+    [composePage setToRecipients:recipients];
+//    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+//    NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"];
+
+    [composePage setSubject:@"This is a test email."];
+    [composePage setMessageBody:@"Hi, I just mailed to say I love you." isHTML:NO];
+    [composePage setTitle:@"Email"];
+    
+    // Attach an image to the email
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"png"];
+    NSData *myData = [NSData dataWithContentsOfFile:path];
+    [composePage addAttachmentData:myData mimeType:@"image/png" fileName:@"rainy"];
+
+    composePage.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:composePage animated:YES completion:nil];
+
+}
+// Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
+-(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)sms_check
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = @"Hello from Mugunth";
+		controller.recipients = [NSArray arrayWithObjects:@"12345678", @"87654321", nil];
+		controller.messageComposeDelegate = self;
+		[self presentModalViewController:controller animated:YES];
+	}
+}
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	switch (result) {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+			
+			break;
+		case MessageComposeResultSent:
+            
+			break;
+		default:
+			break;
+	}
+    
+	[self dismissModalViewControllerAnimated:YES];
 }
 @end

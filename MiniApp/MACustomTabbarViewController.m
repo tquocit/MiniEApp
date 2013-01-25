@@ -14,36 +14,48 @@
 
 @implementation MACustomTabbarViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize customTabBarView;
+
+
+- (void)viewDidAppear:(BOOL)animated
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewWillAppear:animated];
+    
+    [self hideExistingTabBar];
+    
+    NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CustomTabbar" owner:self options:nil];
+    
+    self.customTabBarView = [nibObjects objectAtIndex:0];
+//
+    CGRect customTabBarFrame = self.customTabBarView.frame;
+    customTabBarFrame.origin.y = self.view.frame.size.height - customTabBarFrame.size.height;
+    
+    [self.customTabBarView setFrame:customTabBarFrame];
+//
+   self.customTabBarView.delegate = self;
+
+//
+    [self.view addSubview:self.customTabBarView];
 }
 
-- (void)viewDidLoad
+-(void) hideExistingTabBar
 {
-    [super viewDidLoad];
-    [self addMidButton];
-	// Do any additional setup after loading the view.
+    
+	for(UIView *view in self.view.subviews)
+	{
+		if([view isKindOfClass:[UITabBar class]])
+		{
+			view.hidden = YES;
+			break;
+		}
+	}
 }
 
-- (void)addMidButton
-{
-    UIImage *image = [UIImage imageNamed:@"middle_button.png"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    CGPoint center = self.tabBar.center;
-    button.frame = CGRectMake(center.x - image.size.width/2, center.y - image.size.height/2, image.size.width, image.size.height);
-    button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:button];}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)tabWasSelected:(NSInteger)index {
+    
+    self.selectedIndex = index;
 }
+
+
 
 @end

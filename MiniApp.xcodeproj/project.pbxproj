@@ -17,6 +17,10 @@
 		8446F5ED16AE8EF200FABEC9 /* icon_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446F5EC16AE8EF200FABEC9 /* icon_star.png */; };
 		8452540216AF931C003E0E35 /* icon_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8452540016AF931C003E0E35 /* icon_profile.png */; };
 		8452540316AF931C003E0E35 /* icon_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8452540116AF931C003E0E35 /* icon_profile@2x.png */; };
+		847FEDF116B222C0000FA949 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847FEDF016B222C0000FA949 /* MessageUI.framework */; };
+		847FEDF816B23D23000FA949 /* CustomTabbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDF716B23D23000FA949 /* CustomTabbar.xib */; };
+		847FEDFC16B24150000FA949 /* icon_2359.png in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDFB16B24150000FA949 /* icon_2359.png */; };
+		847FEDFF16B243AD000FA949 /* MACustomTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 847FEDFE16B243AD000FA949 /* MACustomTabbarView.m */; };
 		84A9289616ACDD1D000FB0E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A9289516ACDD1D000FB0E3 /* UIKit.framework */; };
 		84A9289816ACDD1D000FB0E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A9289716ACDD1D000FB0E3 /* Foundation.framework */; };
 		84A9289A16ACDD1D000FB0E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A9289916ACDD1D000FB0E3 /* CoreGraphics.framework */; };
@@ -45,13 +49,6 @@
 		84B607C216AD3D6C008B6F94 /* selection-tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B607B616AD3D6C008B6F94 /* selection-tab@2x.png */; };
 		84B607C316AD3D6C008B6F94 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B607B716AD3D6C008B6F94 /* tabbar.png */; };
 		84B607C416AD3D6C008B6F94 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B607B816AD3D6C008B6F94 /* tabbar@2x.png */; };
-		84CF1CF616AE52B500B1F81A /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CED16AE52B500B1F81A /* back_icon.png */; };
-		84CF1CF716AE52B500B1F81A /* back_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CEE16AE52B500B1F81A /* back_icon@2x.png */; };
-		84CF1CF816AE52B500B1F81A /* forward_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CEF16AE52B500B1F81A /* forward_icon.png */; };
-		84CF1CF916AE52B500B1F81A /* forward_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CF016AE52B500B1F81A /* forward_icon@2x.png */; };
-		84CF1CFA16AE52B500B1F81A /* reload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CF116AE52B500B1F81A /* reload_icon.png */; };
-		84CF1CFB16AE52B500B1F81A /* reload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84CF1CF216AE52B500B1F81A /* reload_icon@2x.png */; };
-		84CF1CFC16AE52B500B1F81A /* TSMiniWebBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF1CF416AE52B500B1F81A /* TSMiniWebBrowser.m */; };
 		84EFB24216AFD46800653C0F /* MADetailContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EFB24116AFD46800653C0F /* MADetailContactCell.m */; };
 		84EFB24D16AFDA1F00653C0F /* icon_add_contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EFB24316AFDA1F00653C0F /* icon_add_contact.png */; };
 		84EFB24E16AFDA1F00653C0F /* icon_add_contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EFB24416AFDA1F00653C0F /* icon_add_contact@2x.png */; };
@@ -85,6 +82,11 @@
 		8446F5EC16AE8EF200FABEC9 /* icon_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_star.png; sourceTree = "<group>"; };
 		8452540016AF931C003E0E35 /* icon_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_profile.png; sourceTree = "<group>"; };
 		8452540116AF931C003E0E35 /* icon_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_profile@2x.png"; sourceTree = "<group>"; };
+		847FEDF016B222C0000FA949 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		847FEDF716B23D23000FA949 /* CustomTabbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTabbar.xib; sourceTree = "<group>"; };
+		847FEDFB16B24150000FA949 /* icon_2359.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_2359.png; sourceTree = "<group>"; };
+		847FEDFD16B243AD000FA949 /* MACustomTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACustomTabbarView.h; sourceTree = "<group>"; };
+		847FEDFE16B243AD000FA949 /* MACustomTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACustomTabbarView.m; sourceTree = "<group>"; };
 		84A9289116ACDD1D000FB0E3 /* MiniApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A9289516ACDD1D000FB0E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84A9289716ACDD1D000FB0E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,14 +132,6 @@
 		84B607B616AD3D6C008B6F94 /* selection-tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selection-tab@2x.png"; sourceTree = "<group>"; };
 		84B607B716AD3D6C008B6F94 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		84B607B816AD3D6C008B6F94 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
-		84CF1CED16AE52B500B1F81A /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
-		84CF1CEE16AE52B500B1F81A /* back_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_icon@2x.png"; sourceTree = "<group>"; };
-		84CF1CEF16AE52B500B1F81A /* forward_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward_icon.png; sourceTree = "<group>"; };
-		84CF1CF016AE52B500B1F81A /* forward_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward_icon@2x.png"; sourceTree = "<group>"; };
-		84CF1CF116AE52B500B1F81A /* reload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload_icon.png; sourceTree = "<group>"; };
-		84CF1CF216AE52B500B1F81A /* reload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reload_icon@2x.png"; sourceTree = "<group>"; };
-		84CF1CF316AE52B500B1F81A /* TSMiniWebBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSMiniWebBrowser.h; sourceTree = "<group>"; };
-		84CF1CF416AE52B500B1F81A /* TSMiniWebBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSMiniWebBrowser.m; sourceTree = "<group>"; };
 		84EFB24016AFD46800653C0F /* MADetailContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADetailContactCell.h; sourceTree = "<group>"; };
 		84EFB24116AFD46800653C0F /* MADetailContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADetailContactCell.m; sourceTree = "<group>"; };
 		84EFB24316AFDA1F00653C0F /* icon_add_contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_add_contact.png; sourceTree = "<group>"; };
@@ -163,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847FEDF116B222C0000FA949 /* MessageUI.framework in Frameworks */,
 				84A9289616ACDD1D000FB0E3 /* UIKit.framework in Frameworks */,
 				84A9289816ACDD1D000FB0E3 /* Foundation.framework in Frameworks */,
 				84A9289A16ACDD1D000FB0E3 /* CoreGraphics.framework in Frameworks */,
@@ -192,6 +187,7 @@
 		84A9289416ACDD1D000FB0E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847FEDF016B222C0000FA949 /* MessageUI.framework */,
 				84A9289516ACDD1D000FB0E3 /* UIKit.framework */,
 				84A9289716ACDD1D000FB0E3 /* Foundation.framework */,
 				84A9289916ACDD1D000FB0E3 /* CoreGraphics.framework */,
@@ -253,6 +249,9 @@
 				8446F5E816AE702800FABEC9 /* MAContactViewCell.m */,
 				84EFB24016AFD46800653C0F /* MADetailContactCell.h */,
 				84EFB24116AFD46800653C0F /* MADetailContactCell.m */,
+				847FEDF716B23D23000FA949 /* CustomTabbar.xib */,
+				847FEDFD16B243AD000FA949 /* MACustomTabbarView.h */,
+				847FEDFE16B243AD000FA949 /* MACustomTabbarView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -269,7 +268,6 @@
 		84A928D116ACF237000FB0E3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				84CF1CEB16AE52B500B1F81A /* TSMiniWebBrowser */,
 				84A928D216ACF250000FB0E3 /* AFNetworking */,
 			);
 			name = Vendor;
@@ -304,6 +302,7 @@
 		84B607AC16AD3D6C008B6F94 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				847FEDFB16B24150000FA949 /* icon_2359.png */,
 				8436B7C216B1487C00799893 /* icon_info_selected.png */,
 				8436B7C316B1487C00799893 /* icon_info_selected@2x.png */,
 				8436B7BE16B147CD00799893 /* icon_contacts_selected.png */,
@@ -333,29 +332,6 @@
 				84B607B816AD3D6C008B6F94 /* tabbar@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		84CF1CEB16AE52B500B1F81A /* TSMiniWebBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				84CF1CEC16AE52B500B1F81A /* images */,
-				84CF1CF416AE52B500B1F81A /* TSMiniWebBrowser.m */,
-				84CF1CF316AE52B500B1F81A /* TSMiniWebBrowser.h */,
-			);
-			path = TSMiniWebBrowser;
-			sourceTree = "<group>";
-		};
-		84CF1CEC16AE52B500B1F81A /* images */ = {
-			isa = PBXGroup;
-			children = (
-				84CF1CED16AE52B500B1F81A /* back_icon.png */,
-				84CF1CEE16AE52B500B1F81A /* back_icon@2x.png */,
-				84CF1CEF16AE52B500B1F81A /* forward_icon.png */,
-				84CF1CF016AE52B500B1F81A /* forward_icon@2x.png */,
-				84CF1CF116AE52B500B1F81A /* reload_icon.png */,
-				84CF1CF216AE52B500B1F81A /* reload_icon@2x.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,12 +403,6 @@
 				84FB5A0816AE2D13000F8C19 /* icon_info@2x.png in Resources */,
 				84FB5A0916AE2D13000F8C19 /* middle_button.png in Resources */,
 				84FB5A0A16AE2D13000F8C19 /* middle_button@2x.png in Resources */,
-				84CF1CF616AE52B500B1F81A /* back_icon.png in Resources */,
-				84CF1CF716AE52B500B1F81A /* back_icon@2x.png in Resources */,
-				84CF1CF816AE52B500B1F81A /* forward_icon.png in Resources */,
-				84CF1CF916AE52B500B1F81A /* forward_icon@2x.png in Resources */,
-				84CF1CFA16AE52B500B1F81A /* reload_icon.png in Resources */,
-				84CF1CFB16AE52B500B1F81A /* reload_icon@2x.png in Resources */,
 				8446F5ED16AE8EF200FABEC9 /* icon_star.png in Resources */,
 				8452540216AF931C003E0E35 /* icon_profile.png in Resources */,
 				8452540316AF931C003E0E35 /* icon_profile@2x.png in Resources */,
@@ -450,6 +420,8 @@
 				8436B7C116B147CD00799893 /* icon_contacts_selected@2x.png in Resources */,
 				8436B7C416B1487D00799893 /* icon_info_selected.png in Resources */,
 				8436B7C516B1487D00799893 /* icon_info_selected@2x.png in Resources */,
+				847FEDF816B23D23000FA949 /* CustomTabbar.xib in Resources */,
+				847FEDFC16B24150000FA949 /* icon_2359.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,11 +446,11 @@
 				84A928EE16ACF250000FB0E3 /* UIImageView+AFNetworking.m in Sources */,
 				84B6074A16ACF91F008B6F94 /* MAPeople.m in Sources */,
 				84B6075816AD303E008B6F94 /* MAWebVC.m in Sources */,
-				84CF1CFC16AE52B500B1F81A /* TSMiniWebBrowser.m in Sources */,
 				8446F5E916AE702800FABEC9 /* MAContactViewCell.m in Sources */,
 				8403FDFA16AFC1640022809B /* MADetailContactViewController.m in Sources */,
 				84EFB24216AFD46800653C0F /* MADetailContactCell.m in Sources */,
 				8436B7BC16B12B5400799893 /* MACustomTabbarViewController.m in Sources */,
+				847FEDFF16B243AD000FA949 /* MACustomTabbarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

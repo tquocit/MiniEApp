@@ -7,7 +7,6 @@
 //
 
 #import "MAWebVC.h"
-#import "TSMiniWebBrowser.h"
 
 @interface MAWebVC ()
 
@@ -19,38 +18,27 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         // Custom initialization
     }
     return self;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
+{
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.viewWebsite loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://2359media.com/"]]];
 
-//    TSMiniWebBrowser *webBrowser = [[TSMiniWebBrowser alloc] initWithUrl:[NSURL URLWithString:@"http://2359media.com"]];
-//    webBrowser.showURLStringOnActionSheetTitle = YES;
-//    webBrowser.showPageTitleOnTitleBar = YES;
-//    webBrowser.showActionButton = YES;
-//    webBrowser.showReloadButton = YES;
-//    webBrowser.mode = TSMiniWebBrowserModeNavigation;
-//
-//    webBrowser.barStyle = UIBarStyleBlack;
+    self.viewWebsite.scalesPageToFit = YES;
     
-//    if (webBrowser.mode == TSMiniWebBrowserModeModal) {
-//        webBrowser.modalDismissButtonTitle = @"Home";
-//        [self presentModalViewController:webBrowser animated:YES];
-//    } else if(webBrowser.mode == TSMiniWebBrowserModeNavigation) {
-//        [self.navigationController pushViewController:webBrowser animated:YES];
-//    }
-   
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

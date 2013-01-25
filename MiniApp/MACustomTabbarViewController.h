@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MACustomTabbarView.h"
+@interface MACustomTabbarViewController : UITabBarController <TabBarDelegate>
 
-@interface MACustomTabbarViewController : UITabBarController
+@property (nonatomic, retain) IBOutlet MACustomTabbarView *customTabBarView;
 
-- (void) addMidButton;
+-(void) hideExistingTabBar;
 
 @end

@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import <AddressBook/AddressBook.h>
 #define PADDING 35;
 @interface MADetailContactViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 @end
@@ -80,6 +81,78 @@
     self.heightArray = [mutable copy];
     
     
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backButtonImage = [UIImage imageNamed:@"icon_back.png"];
+    [backButton setBackgroundImage:backButtonImage forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(getBack:) forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(0.0f, 0.0f, backButtonImage.size.width, backButtonImage.size.height);
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *addButtonImage = [UIImage imageNamed:@"icon_add_contact.png"];
+    [addButton setBackgroundImage:addButtonImage forState:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(addToContact:) forControlEvents:UIControlEventTouchUpInside];
+    addButton.frame = CGRectMake(0.0f, 0.0f, addButtonImage.size.width, addButtonImage.size.height);
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+    
+}
+- (void)getBack:(id)sender {
+    if(self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)addToContact:(id)sender
+{
+    NSString *message = [NSString stringWithFormat:@"Do you want to add %@ to your Address Book?", self.people.name];
+    UIActionSheet * action = [[UIActionSheet alloc]
+                              initWithTitle:message
+                              delegate: self
+                              cancelButtonTitle:@"Cancel"
+                              destructiveButtonTitle:nil
+                              otherButtonTitles:@"Yes",nil];
+    [action showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    [action setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        CFErrorRef  anError = NULL;
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &anError);
+        ABRecordRef newContact = ABPersonCreate();
+
+        //ABRecordsetvalue to set name
+        
+        ABRecordSetValue(newContact, kABPersonFirstNameProperty, CFBridgingRetain(self.people.name), &anError);
+        ABRecordSetValue(newContact, kABPersonOrganizationProperty, @"2359Media", &anError);
+        ABRecordSetValue(newContact, kABPersonNoteProperty, CFBridgingRetain(self.people.role), &anError);
+        
+        //use ABMutableMultiValueRef to add another value
+        
+        //set phone
+        if(self.people.contact) {
+            ABMutableMultiValueRef phones = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(phones, CFBridgingRetain(self.people.contact), kABWorkLabel, NULL) ;
+            ABRecordSetValue(newContact, kABPersonPhoneProperty, phones, &anError);
+        }
+        
+        //set Email
+        if(self.people.userName){
+            ABMutableMultiValueRef emails = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(emails, CFBridgingRetain(self.people.userName), kABWorkLabel, NULL);
+            ABRecordSetValue(newContact, kABPersonEmailProperty, emails, &anError);
+        }
+        
+        ABAddressBookAddRecord(addressBook, newContact, &anError);
+        ABAddressBookSave(addressBook, &anError);
+        UIAlertView *success = [[UIAlertView alloc] init];
+        [success addButtonWithTitle:@"Success"];
+        [success show];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning

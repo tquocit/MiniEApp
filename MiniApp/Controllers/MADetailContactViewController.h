@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MAPeople.h"
-@interface MADetailContactViewController : UITableViewController
+@interface MADetailContactViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (strong, nonatomic) MAPeople *people;
 @property (strong) NSMutableArray *heightArray;

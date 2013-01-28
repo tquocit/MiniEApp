@@ -12,8 +12,9 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <AddressBook/AddressBook.h>
-#define PADDING 35;
+#define PADDING 10;
 @interface MADetailContactViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@property (nonatomic) int numOfRows;
 @end
 
 @implementation MADetailContactViewController
@@ -37,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.delegate = self;
     self.title = self.people.name;
     MADetailContactCell *avatarcell = [self.tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
     MADetailContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
@@ -50,33 +52,31 @@
        
     
     //calculate size for image and role
-    CGSize sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
-    if (sizelable.height < avatarcell.frame.size.height) {
-        sizelable.height = avatarcell.frame.size.height;
+    double sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height;
+    if (sizelable < avatarcell.frame.size.height) {
+        sizelable = avatarcell.frame.size.height;
     }
-    mutable = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:sizelable.height]];
+    mutable = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:sizelable]];
 
     //calculate size for email
-    sizelable = [self.people.userName sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
-    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
+    [mutable addObject:[NSNumber numberWithDouble:cell.frame.size.height]];
     
     //calculate size for contact number
-    sizelable = [self.people.contact sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) ];
-    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
+    [mutable addObject:[NSNumber numberWithDouble:cell.frame.size.height]];
     
     //calculate size for like
-    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
-    if (sizelable.height < cell.frame.size.height) {
-        sizelable.height = cell.frame.size.height;
+    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height+PADDING;
+    if (sizelable < cell.frame.size.height) {
+        sizelable = cell.frame.size.height;
     }
-    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
+    [mutable addObject:[NSNumber numberWithDouble:sizelable]];
     
     //calculate size for dislike
-    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)];
-    if (sizelable.height < cell.frame.size.height) {
-        sizelable.height = cell.frame.size.height;
+    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height;
+    if (sizelable < cell.frame.size.height) {
+        sizelable = cell.frame.size.height;
     }
-    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
+    [mutable addObject:[NSNumber numberWithDouble:sizelable]];
 
     self.heightArray = [mutable copy];
     
@@ -98,6 +98,8 @@
     self.navigationItem.rightBarButtonItem = addButtonItem;
     
 }
+
+
 - (void)getBack:(id)sender {
     if(self.navigationController.viewControllers.count > 1) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -161,18 +163,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([viewController isMemberOfClass:[MADetailContactViewController class]]) {
+        [self.tableView beginUpdates];
+        NSArray *indexPaths = [NSArray arrayWithObjects:
+                               [NSIndexPath indexPathForRow:0 inSection:0],
+                               [NSIndexPath indexPathForRow:1 inSection:0],
+                               [NSIndexPath indexPathForRow:2 inSection:0],
+                               [NSIndexPath indexPathForRow:3 inSection:0],
+                               [NSIndexPath indexPathForRow:4 inSection:0], nil];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        self.numOfRows = indexPaths.count;
+        [self.tableView endUpdates];
+        
+    }
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    return 5;
+    return self.numOfRows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[self.heightArray objectAtIndex:indexPath.row] doubleValue]+PADDING;
+    return [[self.heightArray objectAtIndex:indexPath.row] doubleValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -320,4 +338,6 @@
     
 	[self dismissModalViewControllerAnimated:YES];
 }
+
+
 @end

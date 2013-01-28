@@ -140,7 +140,7 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_email.png" id="lbM-T0-KAO">
                                             <rect key="frame" x="55" y="7" width="22" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -149,19 +149,19 @@
                                     <outlet property="emailDetail" destination="LM3-lW-wkU" id="tvo-9p-7Pr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SMSCell" id="gee-GF-1A6" customClass="MADetailContactCell">
-                                <rect key="frame" x="0.0" y="142" width="320" height="53"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SMSCell" rowHeight="38" id="gee-GF-1A6" customClass="MADetailContactCell">
+                                <rect key="frame" x="0.0" y="142" width="320" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_sms.png" id="Yj8-Kr-mMm">
-                                            <rect key="frame" x="55" y="15" width="22" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="55" y="8" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contact" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YG0-Rt-JRX">
-                                            <rect key="frame" x="85" y="15" width="215" height="20"/>
+                                            <rect key="frame" x="85" y="9" width="215" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -174,19 +174,19 @@
                                     <outlet property="smsDetail" destination="YG0-Rt-JRX" id="ad5-mv-xO1"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LikeCell" id="7zZ-I0-NJd" customClass="MADetailContactCell">
-                                <rect key="frame" x="0.0" y="195" width="320" height="53"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LikeCell" rowHeight="37" id="7zZ-I0-NJd" customClass="MADetailContactCell">
+                                <rect key="frame" x="0.0" y="180" width="320" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_like.png" id="Dgy-hz-Fid">
-                                            <rect key="frame" x="55" y="15" width="22" height="22"/>
+                                            <rect key="frame" x="55" y="7" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Like" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gXJ-gT-kOm">
-                                            <rect key="frame" x="85" y="15" width="215" height="21"/>
+                                            <rect key="frame" x="85" y="7" width="215" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -199,19 +199,19 @@
                                     <outlet property="likeDetail" destination="gXJ-gT-kOm" id="W4P-w8-Umt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DislikeCell" id="lJZ-4H-WTN" customClass="MADetailContactCell">
-                                <rect key="frame" x="0.0" y="248" width="320" height="53"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DislikeCell" rowHeight="38" id="lJZ-4H-WTN" customClass="MADetailContactCell">
+                                <rect key="frame" x="0.0" y="217" width="320" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_dislike.png" id="HSG-Qs-hLu">
-                                            <rect key="frame" x="55" y="15" width="22" height="22"/>
+                                            <rect key="frame" x="55" y="8" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dislike" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v2V-W0-3V2">
-                                            <rect key="frame" x="85" y="15" width="215" height="22"/>
+                                            <rect key="frame" x="85" y="8" width="215" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

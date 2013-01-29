@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarContact;
 @property (weak, nonatomic) IBOutlet UIImageView *mostView;
 
-- (void)cofigurewithModel: (MAPeople *)people;
+- (void)cofigurewithModel: (MAPeople *)people atIndex: (NSIndexPath *)indexPaths;
 @end

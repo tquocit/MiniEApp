@@ -34,6 +34,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -93,6 +94,7 @@
     addButton.frame = CGRectMake(0.0f, 0.0f, addButtonImage.size.width, addButtonImage.size.height);
     UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
     self.navigationItem.rightBarButtonItem = addButtonItem;
+
     
 }
 
@@ -306,6 +308,5 @@
     
 	[self dismissModalViewControllerAnimated:YES];
 }
-
 
 @end

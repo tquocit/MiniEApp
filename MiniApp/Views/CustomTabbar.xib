@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="158469833">
 						<reference key="NSNextResponder" ref="820304807"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, -1}, {320, 71}}</string>
+						<string key="NSFrame">{{0, -5}, {320, 63}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="816986552"/>
@@ -54,7 +54,7 @@
 					<object class="IBUIImageView" id="843906717">
 						<reference key="NSNextResponder" ref="820304807"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{130, -1}, {60, 70}}</string>
+						<string key="NSFrame">{{135, -1}, {50, 55}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="198236297"/>
@@ -69,7 +69,7 @@
 					<object class="IBUIButton" id="198236297">
 						<reference key="NSNextResponder" ref="820304807"/>
 						<int key="NSvFlags">295</int>
-						<string key="NSFrame">{{236, 15}, {50, 50}}</string>
+						<string key="NSFrame">{{165, 9}, {155, 50}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -108,7 +108,7 @@
 					<object class="IBUIButton" id="816986552">
 						<reference key="NSNextResponder" ref="820304807"/>
 						<int key="NSvFlags">295</int>
-						<string key="NSFrame">{{42, 15}, {50, 50}}</string>
+						<string key="NSFrame">{{0, 9}, {155, 50}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="843906717"/>
@@ -131,7 +131,7 @@
 						<reference key="IBUIFont" ref="155692092"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 70}</string>
+				<string key="NSFrameSize">{320, 58}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="158469833"/>
@@ -212,8 +212,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="158469833"/>
 							<reference ref="816986552"/>
-							<reference ref="198236297"/>
 							<reference ref="843906717"/>
+							<reference ref="198236297"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

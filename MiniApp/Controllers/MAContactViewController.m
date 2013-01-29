@@ -105,7 +105,7 @@
         cell = [[MAContactViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     MAPeople *model = [self.result objectAtIndex:indexPath.row];
-    [cell cofigurewithModel:model];
+    [cell cofigurewithModel:model atIndex:indexPath];
     return cell;
   
 //    if ([obj isKindOfClass:[MAPeople class]]) {

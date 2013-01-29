@@ -8,6 +8,7 @@
 
 #import "MADetailContactCell.h"
 #import "UIImageView+AFNetworking.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation MADetailContactCell
 
@@ -27,43 +28,45 @@
     // Configure the view for the selected state
 }
 
-- (void)configurewithDetail:(MAPeople *)detailPeople atIndexPath:(NSIndexPath *)indexPath
+- (void)configurewithDetail:(MAPeople *)detailPeople
+                atIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ([detailPeople isKindOfClass:[MAPeople class]]) {
-        switch (indexPath.row) {
-            case 0:
-                [self.imageDetail setFrame:(CGRectMake(10, 10, 65, 65))];
-                [self.imageDetail setImageWithURL:[NSURL URLWithString:detailPeople.image] placeholderImage:[UIImage imageNamed:@"icon_profile"]];
-                self.contentDetail.text = [NSString stringWithFormat:@"%@",detailPeople.role];
-                break;
-            case 1:
-                self.imageDetail.image = [UIImage imageNamed:@"icon_email.png"];
-                if (detailPeople.userName) {
-                    self.contentDetail.text = detailPeople.userName;
-                }
-                break;
-            case 2:
-                self.imageDetail.image = [UIImage imageNamed:@"icon_sms.png"];
-                if (detailPeople.contact) {
-                    self.contentDetail.text = detailPeople.contact;
-                }
-                break;
-            case 3:
-                self.imageDetail.image = [UIImage imageNamed:@"icon_like.png"];
-                self.contentDetail.text = detailPeople.like;
-                break;
-            case 4:
-                self.imageDetail.image = [UIImage imageNamed:@"icon_dislike.png"];
-                self.contentDetail.text = detailPeople.dislike;
-                break;
-            default:
-                break;
-        }
-        
+    switch (indexPath.row) {
+        case 0:
+            [self.imageDetail setFrame:(CGRectMake(10, 10, 65, 65))];
+            [self.imageDetail setImageWithURL:[NSURL URLWithString:detailPeople.image] placeholderImage:[UIImage imageNamed:@"icon_profile"]];
+            self.contentDetail.text = [NSString stringWithFormat:@"%@",detailPeople.role];
+            self.imageDetail.layer.cornerRadius = 35;
+            self.imageDetail.clipsToBounds = YES;
+            break;
+        case 1:
+            self.imageDetail.image = [UIImage imageNamed:@"icon_email.png"];
+            if (detailPeople.userName) {
+                self.contentDetail.text = detailPeople.userName;
+            }
+            break;
+        case 2:
+            self.imageDetail.image = [UIImage imageNamed:@"icon_sms.png"];
+            if (detailPeople.contact) {
+                self.contentDetail.text = detailPeople.contact;
+            }
+            break;
+        case 3:
+            self.imageDetail.image = [UIImage imageNamed:@"icon_like.png"];
+            self.contentDetail.text = detailPeople.like;
+
+            break;
+        case 4:
+            self.imageDetail.image = [UIImage imageNamed:@"icon_dislike.png"];
+            self.contentDetail.text = detailPeople.dislike;
+            break;
+        default:
+            break;
     }
-    self.contentDetail.numberOfLines = 0;
+//    self.contentDetail.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+     self.contentDetail.numberOfLines = 0;
     self.contentDetail.lineBreakMode = UILineBreakModeWordWrap;
+    
 //    [self.contentDetail sizeToFit];
 }
 

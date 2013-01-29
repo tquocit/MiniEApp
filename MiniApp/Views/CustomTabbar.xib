@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="158469833">
 						<reference key="NSNextResponder" ref="820304807"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, -7}, {320, 75}}</string>
+						<string key="NSFrame">{{0, -1}, {320, 71}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="816986552"/>
@@ -53,8 +53,8 @@
 					</object>
 					<object class="IBUIImageView" id="843906717">
 						<reference key="NSNextResponder" ref="820304807"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{130, 0}, {60, 68}}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{130, -1}, {60, 70}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="198236297"/>
@@ -68,8 +68,8 @@
 					</object>
 					<object class="IBUIButton" id="198236297">
 						<reference key="NSNextResponder" ref="820304807"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{236, 9}, {50, 50}}</string>
+						<int key="NSvFlags">295</int>
+						<string key="NSFrame">{{236, 15}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -79,7 +79,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Button</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="949918429">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -108,8 +107,8 @@
 					</object>
 					<object class="IBUIButton" id="816986552">
 						<reference key="NSNextResponder" ref="820304807"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{42, 9}, {50, 50}}</string>
+						<int key="NSvFlags">295</int>
+						<string key="NSFrame">{{42, 15}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="820304807"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="843906717"/>
@@ -118,7 +117,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Button</string>
 						<reference key="IBUIHighlightedTitleColor" ref="949918429"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -133,7 +131,7 @@
 						<reference key="IBUIFont" ref="155692092"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 68}</string>
+				<string key="NSFrameSize">{320, 70}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="158469833"/>
@@ -213,9 +211,9 @@
 						<reference key="object" ref="820304807"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="158469833"/>
-							<reference ref="843906717"/>
 							<reference ref="816986552"/>
 							<reference ref="198236297"/>
+							<reference ref="843906717"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -249,6 +247,7 @@
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="24.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="3.CustomClassName">MACustomTabbarView</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -305,8 +304,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="icon_2359.png">{58, 70}</string>
-			<string key="icon_contacts.png">{42, 42}</string>
-			<string key="icon_info.png">{43, 43}</string>
+			<string key="icon_contacts.png">{49, 49}</string>
+			<string key="icon_info.png">{49, 49}</string>
 			<string key="tabbar.png">{320, 53}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

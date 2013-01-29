@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MAPeople.h"
-@interface MADetailContactViewController : UITableViewController <UINavigationControllerDelegate, UIActionSheetDelegate>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <AddressBook/AddressBook.h>
+@interface MADetailContactViewController : UITableViewController <UINavigationControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (strong, nonatomic) MAPeople *people;
 @property (strong, nonatomic) NSMutableArray *heightArray;

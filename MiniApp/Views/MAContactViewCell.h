@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MAPeople.h"
 @interface MAContactViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *nameContact;
 @property (weak, nonatomic) IBOutlet UILabel *emailContact;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarContact;
 @property (weak, nonatomic) IBOutlet UIImageView *mostView;
 
+- (void)cofigurewithModel: (MAPeople *)people;
 @end

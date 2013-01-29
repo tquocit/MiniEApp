@@ -7,18 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAPeople.h"
 
 @interface MADetailContactCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
-@property (weak, nonatomic) IBOutlet UILabel *roleDetail;
+@property (weak, nonatomic) IBOutlet UIImageView *imageDetail;
+@property (weak, nonatomic) IBOutlet UILabel *contentDetail;
 
-@property (weak, nonatomic) IBOutlet UILabel *emailDetail;
-
-@property (weak, nonatomic) IBOutlet UILabel *smsDetail;
-
-@property (weak, nonatomic) IBOutlet UILabel *likeDetail;
-
-@property (weak, nonatomic) IBOutlet UILabel *dislikeDetail;
-
+- (void)configurewithDetail: (MAPeople *)detailPeople atIndexPath:(NSIndexPath *)indexPath;
 @end

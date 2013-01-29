@@ -9,12 +9,11 @@
 #import "MADetailContactViewController.h"
 #import "MADetailContactCell.h"
 #import "UIImageView+AFNetworking.h"
-#import <MessageUI/MessageUI.h>
-#import <MessageUI/MFMailComposeViewController.h>
-#import <AddressBook/AddressBook.h>
-#define PADDING 10;
-@interface MADetailContactViewController () <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
-@property (nonatomic) int numOfRows;
+
+#define PADDING 15;
+#define DEFAULTWIDTH 216;
+@interface MADetailContactViewController ()
+@property (nonatomic) int countCell;
 @end
 
 @implementation MADetailContactViewController
@@ -42,21 +41,19 @@
     self.title = self.people.name;
     MADetailContactCell *avatarcell = [self.tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
     MADetailContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
-
+    
     NSMutableArray *mutable = [NSMutableArray array];
     
-    UIFont *font = cell.emailDetail.font;
-    CGFloat width = cell.emailDetail.frame.size.width;
+    UIFont *font = avatarcell.contentDetail.font;
+    CGFloat width = avatarcell.contentDetail.frame.size.width;
     
-    
-       
     
     //calculate size for image and role
-    double sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height;
-    if (sizelable < avatarcell.frame.size.height) {
-        sizelable = avatarcell.frame.size.height;
+    CGSize sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    if (sizelable.height < avatarcell.frame.size.height) {
+        sizelable.height = avatarcell.frame.size.height;
     }
-    mutable = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:sizelable]];
+    mutable = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:sizelable.height]];
 
     //calculate size for email
     [mutable addObject:[NSNumber numberWithDouble:cell.frame.size.height]];
@@ -65,18 +62,18 @@
     [mutable addObject:[NSNumber numberWithDouble:cell.frame.size.height]];
     
     //calculate size for like
-    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height+PADDING;
-    if (sizelable < cell.frame.size.height) {
-        sizelable = cell.frame.size.height;
+    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    if (sizelable.height < cell.frame.size.height) {
+        sizelable.height = cell.frame.size.height;
     }
-    [mutable addObject:[NSNumber numberWithDouble:sizelable]];
+    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
     
     //calculate size for dislike
-    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000)].height;
-    if (sizelable < cell.frame.size.height) {
-        sizelable = cell.frame.size.height;
+    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    if (sizelable.height < cell.frame.size.height) {
+        sizelable.height = cell.frame.size.height;
     }
-    [mutable addObject:[NSNumber numberWithDouble:sizelable]];
+    [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
 
     self.heightArray = [mutable copy];
     
@@ -99,13 +96,14 @@
     
 }
 
-
+//get back to contact list
 - (void)getBack:(id)sender {
     if(self.navigationController.viewControllers.count > 1) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
+//button to add 1 people to address book
 - (void)addToContact:(id)sender
 {
     NSString *message = [NSString stringWithFormat:@"Do you want to add %@ to your Address Book?", self.people.name];
@@ -119,6 +117,7 @@
     [action setActionSheetStyle:UIActionSheetStyleBlackOpaque];
 }
 
+//action add
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -163,6 +162,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//animation for each cell
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([viewController isMemberOfClass:[MADetailContactViewController class]]) {
@@ -174,18 +174,23 @@
                                [NSIndexPath indexPathForRow:3 inSection:0],
                                [NSIndexPath indexPathForRow:4 inSection:0], nil];
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-        self.numOfRows = indexPaths.count;
+        self.countCell = indexPaths.count;
         [self.tableView endUpdates];
         
     }
 }
 
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    return self.numOfRows;
+    return self.countCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -195,49 +200,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    MADetailContactCell *cell;
-    switch (indexPath.row) {
-        case 0:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
-            [cell.avatarImage setImageWithURL:[NSURL URLWithString:self.people.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
-            cell.roleDetail.text = [self.people valueForKey:@"role"];
-            
-            break;}
-        case 1:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
-            cell.emailDetail.text = [self.people valueForKey:@"userName"];
-            
-            break;}
-            
-        case 2:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SMSCell"];
-//            if (!self.people.contact) {
-//                
-//            }
-//            else{
-//                cell.smsDetail.text = [self.people valueForKey:@"contact"];
-//            }
-            cell.smsDetail.text = [self.people valueForKey:@"contact"];
-
-            break;}
-        case 3:{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LikeCell"];
-            cell.likeDetail.text = [self.people valueForKey:@"like"];
-            [cell.likeDetail sizeToFit];
-            break;}
-        case 4: {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DislikeCell"];
-            cell.dislikeDetail.text = [self.people valueForKey:@"dislike"];
-            [cell.dislikeDetail sizeToFit];
-            
-            break;
-        }
-        default:
-            break;
-    }
-    [cell.roleDetail sizeToFit];
-   
+    MADetailContactCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DetailsCell"];
+//    [cell setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
+    CGRect cellframe = cell.frame;
+    MAPeople *model = self.people;
+    [cell configurewithDetail:model atIndexPath:indexPath];
+    [cell setFrame:cellframe];
     return cell;
 }
 

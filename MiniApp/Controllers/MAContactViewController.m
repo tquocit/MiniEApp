@@ -24,13 +24,6 @@
 
 @implementation MAContactViewController
 
-//-(NSMutableArray*)result
-//{
-//    if(!_result)
-//        _result = [[NSMutableArray alloc]init];
-//    return _result;
-//}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -105,37 +98,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MAContactViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell staff"];
-      
-    id obj = [self.result objectAtIndex:indexPath.row];
-
-    
-    if ([obj isKindOfClass:[MAPeople class]]) {
-        MAPeople *p = obj;
-        if (self.highestAt == indexPath.row) {
-            cell.mostView.image = [UIImage imageNamed:@"icon_star.png"];
-        }
-        else
-        {
-            cell.mostView.image = [UIImage imageNamed:@""];
-        }
-        
-        cell.nameContact.text = [NSString stringWithFormat:@"%@", p.name];
-        if ([p.gender isEqual:@"male"]) {
-            [cell.nameContact setTextColor:[UIColor orangeColor]];
-        }
-        else
-        {
-            [cell.nameContact setTextColor:[UIColor blueColor]];
-        }
-        cell.emailContact.text = [NSString stringWithFormat:@"%@", p.userName];
-        [cell.avatarContact setImageWithURL:[NSURL URLWithString:p.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
-        cell.avatarContact.layer.cornerRadius = 20.0;
-        cell.avatarContact.clipsToBounds = YES;
-
+    static NSString *CellIdentifier = @"Cell staff";
+    MAContactViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if(!cell)
+    {
+        cell = [[MAContactViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    MAPeople *model = [self.result objectAtIndex:indexPath.row];
+    [cell cofigurewithModel:model];
     return cell;
+  
+//    if ([obj isKindOfClass:[MAPeople class]]) {
+//        MAPeople *p = obj;
+//        if (self.highestAt == indexPath.row) {
+//            cell.mostView.image = [UIImage imageNamed:@"icon_star.png"];
+//        }
+//        else
+//        {
+//            cell.mostView.image = [UIImage imageNamed:@""];
+//        }
+//        
+//        cell.nameContact.text = [NSString stringWithFormat:@"%@", p.name];
+//        if ([p.gender isEqual:@"male"]) {
+//            [cell.nameContact setTextColor:[UIColor orangeColor]];
+//        }
+//        else
+//        {
+//            [cell.nameContact setTextColor:[UIColor blueColor]];
+//        }
+//        cell.emailContact.text = [NSString stringWithFormat:@"%@", p.userName];
+//        [cell.avatarContact setImageWithURL:[NSURL URLWithString:p.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
+//        cell.avatarContact.layer.cornerRadius = 20.0;
+//        cell.avatarContact.clipsToBounds = YES;
+
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

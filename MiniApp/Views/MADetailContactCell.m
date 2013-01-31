@@ -63,11 +63,10 @@
         default:
             break;
     }
-//    self.contentDetail.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-     self.contentDetail.numberOfLines = 0;
-    self.contentDetail.lineBreakMode = UILineBreakModeWordWrap;
+    self.contentDetail.numberOfLines = 0;
+    self.contentDetail.lineBreakMode = NSLineBreakByWordWrapping;
     
-//    [self.contentDetail sizeToFit];
+
 }
 
 @end

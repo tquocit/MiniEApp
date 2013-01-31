@@ -12,9 +12,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self customizeInterface];
-//    [[UINavigationBar appearance] setColor:[UIColor blackColor]];
-        return YES;
+//
+//    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:27.0/255.0 green:28.0/255.0 blue:32.0/255.0 alpha:1.0]];
+//    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,[UIFont fontWithName:@"Helvetica Neue Bold" size:20.0], UITextAttributeFont, nil]];
+//    
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];    return YES;
    
 }
 

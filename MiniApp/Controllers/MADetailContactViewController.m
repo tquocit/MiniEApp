@@ -9,10 +9,17 @@
 #import "MADetailContactViewController.h"
 #import "MADetailContactCell.h"
 #import "UIImageView+AFNetworking.h"
+#import <QuartzCore/QuartzCore.h>
+
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <AddressBook/AddressBook.h>
 
 #define PADDING 15;
 #define DEFAULTWIDTH 216;
-@interface MADetailContactViewController ()
+@interface MADetailContactViewController () <UINavigationControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+
+
 @property (nonatomic) int countCell;
 @end
 
@@ -38,8 +45,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.delegate = self;
-    self.title = self.people.name;
+    
+    
+//    self.navigationController.delegate = self;
+//    self.title = self.people.name;
     MADetailContactCell *avatarcell = [self.tableView dequeueReusableCellWithIdentifier:@"AvatarCell"];
     MADetailContactCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EmailCell"];
     
@@ -50,7 +59,7 @@
     
     
     //calculate size for image and role
-    CGSize sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize sizelable = [self.people.role sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     if (sizelable.height < avatarcell.frame.size.height) {
         sizelable.height = avatarcell.frame.size.height;
     }
@@ -63,14 +72,14 @@
     [mutable addObject:[NSNumber numberWithDouble:cell.frame.size.height]];
     
     //calculate size for like
-    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    sizelable = [self.people.like sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     if (sizelable.height < cell.frame.size.height) {
         sizelable.height = cell.frame.size.height;
     }
     [mutable addObject:[NSNumber numberWithDouble:sizelable.height]];
     
     //calculate size for dislike
-    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:UILineBreakModeWordWrap];
+    sizelable = [self.people.dislike sizeWithFont:font constrainedToSize: CGSizeMake(width, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     if (sizelable.height < cell.frame.size.height) {
         sizelable.height = cell.frame.size.height;
     }
@@ -83,9 +92,10 @@
     UIImage *backButtonImage = [UIImage imageNamed:@"icon_back.png"];
     [backButton setBackgroundImage:backButtonImage forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(getBack:) forControlEvents:UIControlEventTouchUpInside];
-    backButton.frame = CGRectMake(0.0f, 0.0f, backButtonImage.size.width, backButtonImage.size.height);
+    backButton.frame = CGRectMake(2.0f, 2.0f, backButtonImage.size.width, backButtonImage.size.height);
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;
+    
     
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *addButtonImage = [UIImage imageNamed:@"icon_add_contact.png"];
@@ -100,9 +110,7 @@
 
 //get back to contact list
 - (void)getBack:(id)sender {
-    if(self.navigationController.viewControllers.count > 1) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //button to add 1 people to address book
@@ -164,6 +172,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 //animation for each cell
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -203,7 +212,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MADetailContactCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DetailsCell"];
-//    [cell setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height)];
     CGRect cellframe = cell.frame;
     MAPeople *model = self.people;
     [cell configurewithDetail:model atIndexPath:indexPath];
@@ -256,22 +264,17 @@
     NSArray *recipients=[NSArray arrayWithObject:self.people.userName];
     
     [composePage setToRecipients:recipients];
-//    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
-//    NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"];
 
     [composePage setSubject:@"This is a test email."];
     [composePage setMessageBody:@"Hi, I just mailed to say I love you." isHTML:NO];
     [composePage setTitle:@"Email"];
     
-    // Attach an image to the email
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"rainy" ofType:@"png"];
-    NSData *myData = [NSData dataWithContentsOfFile:path];
-    [composePage addAttachmentData:myData mimeType:@"image/png" fileName:@"rainy"];
-
+    
     composePage.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:composePage animated:YES completion:nil];
 
 }
+
 // Dismisses the email composition interface when users tap Cancel or Send. Proceeds to update the message field with the result of the operation.
 -(void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     

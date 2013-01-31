@@ -12,13 +12,14 @@
 #import "MADetailContactViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "AFNetworking.h"
-@interface MAContactViewController ()
+
+@interface MAContactViewController () <MAStaffCellDelegate>
 
 
 @property (strong,nonatomic) NSMutableArray *result;
-@property (strong,nonatomic) NSUserDefaults *countClick;
-@property (nonatomic,assign) int highestAt;
-@property (nonatomic,assign) int highestClick;
+@property (nonatomic, strong) NSUserDefaults *countClick;
+@property (nonatomic, assign) NSString *mostVisitedAtName;
+@property (nonatomic, assign) int highestClick;
 
 @end
 
@@ -36,9 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self loaddata];
-    
-    
+    self.mostVisitedAtName = [self getNameOfHighestVisited];
+
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
@@ -49,14 +49,13 @@
 -(void)refreshView:(UIRefreshControl *)refresh {
     
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
-    // custom refresh logic would be placed here...
-    self.countClick = [NSUserDefaults standardUserDefaults];        
      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",[formatter stringFromDate:[NSDate date]]];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
     [self setTitle:@"2359 MEDIA"];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/11295402/MiniEval/data.json"]];
+    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSMutableArray *results = [NSMutableArray array];
         for (id staffDictionary in JSON) {
@@ -64,13 +63,15 @@
             [results addObject:people];
         }
         self.result = results;
-        self.highestAt = [self getHighestClick];
-        [self.tableView reloadData];
+        
+        
+        
         [refresh endRefreshing];
-                
+        [self.tableView reloadData];
+        
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){}];
     [operation start];
-        
+    
 }
 
 
@@ -96,6 +97,7 @@
     return self.result.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell staff";
@@ -105,40 +107,12 @@
         cell = [[MAContactViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     MAPeople *model = [self.result objectAtIndex:indexPath.row];
+    cell.delegate = self;
     [cell cofigurewithModel:model atIndex:indexPath];
+    
+    
     return cell;
-  
-//    if ([obj isKindOfClass:[MAPeople class]]) {
-//        MAPeople *p = obj;
-//        if (self.highestAt == indexPath.row) {
-//            cell.mostView.image = [UIImage imageNamed:@"icon_star.png"];
-//        }
-//        else
-//        {
-//            cell.mostView.image = [UIImage imageNamed:@""];
-//        }
-//        
-//        cell.nameContact.text = [NSString stringWithFormat:@"%@", p.name];
-//        if ([p.gender isEqual:@"male"]) {
-//            [cell.nameContact setTextColor:[UIColor orangeColor]];
-//        }
-//        else
-//        {
-//            [cell.nameContact setTextColor:[UIColor blueColor]];
-//        }
-//        cell.emailContact.text = [NSString stringWithFormat:@"%@", p.userName];
-//        [cell.avatarContact setImageWithURL:[NSURL URLWithString:p.image] placeholderImage:[UIImage imageNamed:@"icon_profile.png"]];
-//        cell.avatarContact.layer.cornerRadius = 20.0;
-//        cell.avatarContact.clipsToBounds = YES;
 
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    cell.backgroundColor = ([indexPath row]%2)?[UIColor colorWithRed:0.5 green:0.5 blue:1 alpha:0.6]:[UIColor colorWithRed:0.5 green:0.5 blue:1 alpha:0.3];
-    
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -149,51 +123,59 @@
     {
         MADetailContactViewController *destinationVC = (MADetailContactViewController *)segue.destinationViewController;
         destinationVC.people = persons;
-        
-        int hits = [self.countClick integerForKey:persons.name] + 1;
-        if (hits > self.highestClick) {
-            self.highestClick = hits;
-            self.highestAt = [(UITableView *)[sender superview]  indexPathForSelectedRow].row;
-        }
-        [self.countClick setInteger:hits forKey:persons.name];
-        [self.countClick synchronize];
-
+        [self countClickOf:persons.name];
+    
     }
     
-    [self.tableView reloadData];
-    
-    
+    [self.tableView reloadData];    
 }
 
-//count the highest count click
--(int) getHighestClick
+//count click
+- (void)countClickOf:(NSString*)personName
 {
-    int start = 0;
-    for(int i = 0; i<self.result.count; i++)
+    self.countClick = [NSUserDefaults standardUserDefaults];
+    int hit = [self.countClick integerForKey: personName] + 1;
+    if(hit > self.highestClick)
     {
-        int clicked = [self.countClick integerForKey:[self.result[i] name]];
-        if( clicked > self.highestClick)
-        {
-            self.highestClick = clicked;
-            start = i;
-        }
-
+        self.highestClick = hit;
+        self.mostVisitedAtName = personName;
     }
-    return start;
+    [self.countClick setInteger:hit forKey:personName];
+    [self.countClick synchronize];
+    
 }
 
+//find people with highest visited
+-(NSString *)getNameOfHighestVisited
+{
+    int star = 0;
+    for (int i = 0; i < self.result.count; i++) {
+        int click = [self.countClick integerForKey:[self.result[i] name]];
+        if( click > self.highestClick)
+        {
+            self.highestClick = click;
+            star = i;
+        }
+    }
+    if(star)
+    {
+        return nil;
+    }
+    else return [self.result[star] name];
+}
+
+
+
+-(NSString *)markStarForHighest
+{
+    return self.mostVisitedAtName;
+}
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+
 }
 
 @end

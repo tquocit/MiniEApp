@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8404F15B16B6322800EFB9CA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8404F15A16B6322800EFB9CA /* AddressBook.framework */; };
 		8404F15D16B6324100EFB9CA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8404F15C16B6324100EFB9CA /* AddressBookUI.framework */; };
+		841970F516B9050D006AC7F7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841970F416B9050D006AC7F7 /* QuartzCore.framework */; };
+		847C019616BA73C000BB6C11 /* MACustomNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C019516BA73C000BB6C11 /* MACustomNavigationViewController.m */; };
+		847C019816BA78BD00BB6C11 /* navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 847C019716BA78BD00BB6C11 /* navi.png */; };
 		847FEDF116B222C0000FA949 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847FEDF016B222C0000FA949 /* MessageUI.framework */; };
 		84A08E1D16B6533000910E91 /* icon_2359.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A08DFE16B6533000910E91 /* icon_2359.png */; };
 		84A08E1E16B6533000910E91 /* icon_add_contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A08DFF16B6533000910E91 /* icon_add_contact.png */; };
@@ -76,6 +79,10 @@
 /* Begin PBXFileReference section */
 		8404F15A16B6322800EFB9CA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8404F15C16B6324100EFB9CA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		841970F416B9050D006AC7F7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		847C019416BA73BF00BB6C11 /* MACustomNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACustomNavigationViewController.h; sourceTree = "<group>"; };
+		847C019516BA73C000BB6C11 /* MACustomNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACustomNavigationViewController.m; sourceTree = "<group>"; };
+		847C019716BA78BD00BB6C11 /* navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navi.png; path = Button/navi.png; sourceTree = "<group>"; };
 		847FEDF016B222C0000FA949 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		84A08DFE16B6533000910E91 /* icon_2359.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_2359.png; path = Button/icon_2359.png; sourceTree = "<group>"; };
 		84A08DFF16B6533000910E91 /* icon_add_contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_add_contact.png; path = Button/icon_add_contact.png; sourceTree = "<group>"; };
@@ -167,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841970F516B9050D006AC7F7 /* QuartzCore.framework in Frameworks */,
 				8404F15D16B6324100EFB9CA /* AddressBookUI.framework in Frameworks */,
 				8404F15B16B6322800EFB9CA /* AddressBook.framework in Frameworks */,
 				847FEDF116B222C0000FA949 /* MessageUI.framework in Frameworks */,
@@ -182,6 +190,7 @@
 		84A08DFD16B652E800910E91 /* Button */ = {
 			isa = PBXGroup;
 			children = (
+				847C019716BA78BD00BB6C11 /* navi.png */,
 				84A08DFE16B6533000910E91 /* icon_2359.png */,
 				84A08DFF16B6533000910E91 /* icon_add_contact.png */,
 				84A08E0016B6533000910E91 /* icon_add_contact@2x.png */,
@@ -228,6 +237,8 @@
 				84A08E4C16B6597B00910E91 /* MADetailContactViewController.m */,
 				84A08E4D16B6597B00910E91 /* MAWebVC.h */,
 				84A08E4E16B6597B00910E91 /* MAWebVC.m */,
+				847C019416BA73BF00BB6C11 /* MACustomNavigationViewController.h */,
+				847C019516BA73C000BB6C11 /* MACustomNavigationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +320,7 @@
 		84A9289416ACDD1D000FB0E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				841970F416B9050D006AC7F7 /* QuartzCore.framework */,
 				8404F15C16B6324100EFB9CA /* AddressBookUI.framework */,
 				8404F15A16B6322800EFB9CA /* AddressBook.framework */,
 				847FEDF016B222C0000FA949 /* MessageUI.framework */,
@@ -450,6 +462,7 @@
 				84A08E3A16B6533000910E91 /* tabbar.png in Resources */,
 				84A08E3B16B6533000910E91 /* tabbar@2x.png in Resources */,
 				84A08E7D16B659A600910E91 /* CustomTabbar.xib in Resources */,
+				847C019816BA78BD00BB6C11 /* navi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +492,7 @@
 				84A08E7F16B659A600910E91 /* MACustomTabbarView.m in Sources */,
 				84A08E8016B659A600910E91 /* MADetailContactCell.m in Sources */,
 				84A08E8416B659D800910E91 /* MAPeople.m in Sources */,
+				847C019616BA73C000BB6C11 /* MACustomNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

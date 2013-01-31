@@ -8,7 +8,7 @@
 
 #import "MACustomTabbarViewController.h"
 
-@interface MACustomTabbarViewController ()
+@interface MACustomTabbarViewController () <TabBarDelegate>
 
 @end
 

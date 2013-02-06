@@ -6,12 +6,9 @@
 //  Copyright (c) 2013 Quoc. All rights reserved.
 //
 
-#import "MAContactViewController.h"
-#import "MAPeople.h"
-#import "MAContactViewCell.h"
 #import "MADetailContactViewController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "AFNetworking.h"
+
+//#import "AFNetworking.h"
 
 @interface MAContactViewController () <MAStaffCellDelegate>
 
@@ -53,24 +50,21 @@
     [formatter setDateFormat:@"MMM d, h:mm a"];
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",[formatter stringFromDate:[NSDate date]]];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-    [self setTitle:@"2359 MEDIA"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://dl.dropbox.com/u/11295402/MiniEval/data.json"]];
+    [self setTitle:@"2359 Media"];
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSMutableArray *results = [NSMutableArray array];
-        for (id staffDictionary in JSON) {
-            MAPeople *people = [[MAPeople alloc] initWithDictionary:staffDictionary];
-            [results addObject:people];
-        }
-        self.result = results;
-        
-        
-        
-        [refresh endRefreshing];
-        [self.tableView reloadData];
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){}];
-    [operation start];
+    [[MAApiClient sharedClient] getPath:kStaffAPI parameters:nil
+                               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                   NSMutableArray *results = [NSMutableArray arrayWithCapacity:[responseObject count]];
+                                   for (id obj in responseObject) {
+                                       MAPeople *people = [[MAPeople alloc] initWithDictionary:obj];
+                                       [results addObject:people];
+                                   }
+                                   self.result = results;
+                                   [refresh endRefreshing];
+                                   [self.tableView reloadData];
+                               }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                   
+                               }];
     
 }
 
@@ -123,7 +117,7 @@
     {
         MADetailContactViewController *destinationVC = (MADetailContactViewController *)segue.destinationViewController;
         destinationVC.people = persons;
-        [self countClickOf:persons.name];
+//        [self countClickOf:persons.name];
     
     }
     

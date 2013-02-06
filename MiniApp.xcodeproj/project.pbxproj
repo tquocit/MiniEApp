@@ -13,6 +13,9 @@
 		847C019616BA73C000BB6C11 /* MACustomNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847C019516BA73C000BB6C11 /* MACustomNavigationViewController.m */; };
 		847C019816BA78BD00BB6C11 /* navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 847C019716BA78BD00BB6C11 /* navi.png */; };
 		847FEDF116B222C0000FA949 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847FEDF016B222C0000FA949 /* MessageUI.framework */; };
+		8490E9EB16C253D9002B9CD6 /* MAApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490E9EA16C253D9002B9CD6 /* MAApiClient.m */; };
+		8490E9EE16C25584002B9CD6 /* MAConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8490E9ED16C25584002B9CD6 /* MAConfig.m */; };
+		849678E116C264CE00EC9955 /* UIColor+MAColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 849678E016C264CE00EC9955 /* UIColor+MAColor.m */; };
 		84A08E1D16B6533000910E91 /* icon_2359.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A08DFE16B6533000910E91 /* icon_2359.png */; };
 		84A08E1E16B6533000910E91 /* icon_add_contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A08DFF16B6533000910E91 /* icon_add_contact.png */; };
 		84A08E1F16B6533000910E91 /* icon_add_contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A08E0016B6533000910E91 /* icon_add_contact@2x.png */; };
@@ -84,6 +87,12 @@
 		847C019516BA73C000BB6C11 /* MACustomNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACustomNavigationViewController.m; sourceTree = "<group>"; };
 		847C019716BA78BD00BB6C11 /* navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navi.png; path = Button/navi.png; sourceTree = "<group>"; };
 		847FEDF016B222C0000FA949 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8490E9E916C253D9002B9CD6 /* MAApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAApiClient.h; sourceTree = "<group>"; };
+		8490E9EA16C253D9002B9CD6 /* MAApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAApiClient.m; sourceTree = "<group>"; };
+		8490E9EC16C25584002B9CD6 /* MAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAConfig.h; sourceTree = "<group>"; };
+		8490E9ED16C25584002B9CD6 /* MAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAConfig.m; sourceTree = "<group>"; };
+		849678DF16C264CE00EC9955 /* UIColor+MAColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MAColor.h"; sourceTree = "<group>"; };
+		849678E016C264CE00EC9955 /* UIColor+MAColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MAColor.m"; sourceTree = "<group>"; };
 		84A08DFE16B6533000910E91 /* icon_2359.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_2359.png; path = Button/icon_2359.png; sourceTree = "<group>"; };
 		84A08DFF16B6533000910E91 /* icon_add_contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_add_contact.png; path = Button/icon_add_contact.png; sourceTree = "<group>"; };
 		84A08E0016B6533000910E91 /* icon_add_contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_add_contact@2x.png"; path = "Button/icon_add_contact@2x.png"; sourceTree = "<group>"; };
@@ -187,6 +196,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		849678DE16C264BE00EC9955 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				849678DF16C264CE00EC9955 /* UIColor+MAColor.h */,
+				849678E016C264CE00EC9955 /* UIColor+MAColor.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		84A08DFD16B652E800910E91 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +314,8 @@
 			children = (
 				84A08E8216B659D800910E91 /* MAPeople.h */,
 				84A08E8316B659D800910E91 /* MAPeople.m */,
+				8490E9E916C253D9002B9CD6 /* MAApiClient.h */,
+				8490E9EA16C253D9002B9CD6 /* MAApiClient.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +354,7 @@
 		84A9289B16ACDD1D000FB0E3 /* MiniApp */ = {
 			isa = PBXGroup;
 			children = (
+				849678DE16C264BE00EC9955 /* Categories */,
 				84A08E4616B6597B00910E91 /* Controllers */,
 				84A08E8116B659D800910E91 /* Models */,
 				84A08E7516B659A600910E91 /* Views */,
@@ -359,6 +380,8 @@
 				84A928A716ACDD1D000FB0E3 /* Default.png */,
 				84A928A916ACDD1D000FB0E3 /* Default@2x.png */,
 				84A928AB16ACDD1D000FB0E3 /* Default-568h@2x.png */,
+				8490E9EC16C25584002B9CD6 /* MAConfig.h */,
+				8490E9ED16C25584002B9CD6 /* MAConfig.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -493,6 +516,9 @@
 				84A08E8016B659A600910E91 /* MADetailContactCell.m in Sources */,
 				84A08E8416B659D800910E91 /* MAPeople.m in Sources */,
 				847C019616BA73C000BB6C11 /* MACustomNavigationViewController.m in Sources */,
+				8490E9EB16C253D9002B9CD6 /* MAApiClient.m in Sources */,
+				8490E9EE16C25584002B9CD6 /* MAConfig.m in Sources */,
+				849678E116C264CE00EC9955 /* UIColor+MAColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

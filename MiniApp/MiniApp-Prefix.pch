@@ -11,5 +11,23 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-//    #import "MAConstant.h"
+    #import <QuartzCore/QuartzCore.h>
+    #import "MAConfig.h"
+    #import "AFNetworking.h"
+
+//Categories
+    #import "UIColor+MAColor.h"
+
+//Controller
+    #import "MAContactViewController.h"
+    #import "MACustomTabbarViewController.h"
+    #import "MACustomNavigationViewController.h"
+
+//Model
+    #import "MAPeople.h"
+    #import "MAApiClient.h"
+
+//View
+    #import "MAContactViewCell.h"
+    #import "MACustomTabbarView.h"
 #endif
